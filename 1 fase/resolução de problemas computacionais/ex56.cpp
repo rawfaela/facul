@@ -14,5 +14,5 @@ main()
 	printf("digite a qtd de racao pro gato 2: ");
 	scanf("%f", &qtd2);
 	
-	printf("resto de racao no saco dps de 5 dias: %.2f", (saco - ((qtd1+qtd2)*0.005)));
+	printf("resto de racao no saco dps de 5 dias: %.2f", (saco*1000 - ((qtd1+qtd2)*5))/1000); //ou (saco - ((qtd1+qtd2)*0.005))
 }
