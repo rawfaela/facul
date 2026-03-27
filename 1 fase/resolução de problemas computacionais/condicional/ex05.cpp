@@ -12,7 +12,9 @@ main()
 	if (num1>num2){
 		printf("%.2f", num1);
 	}
-	else{
+	else if (num2>num1){
 		printf("%.2f", num2);
 	}
+	else {
+		printf("numeros iguais");
 }
