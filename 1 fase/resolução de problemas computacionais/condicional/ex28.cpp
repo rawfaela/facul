@@ -18,7 +18,7 @@ Acima de 35              Obesida Mórbida */
 #include<stdio.h>
 #include<math.h>
 
-main()
+int main()
 {
 	char nome[50];
 	float peso, altura, imc;
