@@ -24,7 +24,7 @@ int main()
 	float peso, altura, imc;
 	
 	printf("digite o nome: ");
-	scanf("%s", &nome);
+	gets(nome);
 	printf("digite o peso (kg): ");
 	scanf("%f",&peso);
 	printf("digite a altura (m): ");
