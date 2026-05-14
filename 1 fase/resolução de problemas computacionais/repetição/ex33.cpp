@@ -47,7 +47,7 @@ main()
 	normal = 0;
 	caro = 0;
 	
-	for (int i = 1; i <= 3; i++)
+	for (int i = 1; i <= 12; i++)
 	{
 		printf("digite o preco unitario: ");
 		scanf("%f",&preco_un);
@@ -169,7 +169,7 @@ main()
 		printf("\nproduto: %d\n preco unitario: %.2f\n refrigerado: %c\n categoria: %c\n custo estocagem: %.2f\n imposto de %i%%: %.2f\n preco final: %.2f\n classificacao: %s\n \n\n",i,preco_un,ref,cat,custo_esto,imposto,custo_imposto, preco_fin,classif);
 	}
 	
-	printf("media dos valores adicionais:\n custos de estocagem: %.2f \n custos impostos: %.2f\n",(soma_esto/3),(soma_imposto/3));
+	printf("media dos valores adicionais:\n custos de estocagem: %.2f \n custos impostos: %.2f\n",(soma_esto/12),(soma_imposto/12));
 	printf("\nmaior preco final: %.2f", maior);
 	printf("\nmenor preco final: %.2f", menor);
 	printf("\ntotal dos impostos: %.2f",soma_imposto);
