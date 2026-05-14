@@ -36,26 +36,35 @@ Acima de R$ 100,00                            Caro
 #include <ctype.h> //toupper()
 main()
 {
-	float preco_un, custo_esto, imposto, preco_fin;
-	char ref, cat;
-	for (int i = 1; i <= 12; i++)
+	float preco_un, custo_esto, custo_imposto, preco_fin, soma_esto, soma_imposto, maior, menor;
+	char ref, cat, *classif;
+	int imposto, barato, normal, caro;
+	maior = -999999999;
+	menor = 999999999;
+	soma_esto = 0;
+	soma_imposto = 0;
+	barato = 0;
+	normal = 0;
+	caro = 0;
+	
+	for (int i = 1; i <= 3; i++)
 	{
 		printf("digite o preco unitario: ");
 		scanf("%f",&preco_un);
 		
 		do 
 		{
-			printf("digite se e refrigerado ou nao (S/N)");
-			scanf("%c",&ref);
+			printf("digite se e refrigerado ou nao (S/N): ");
+			scanf(" %c",&ref);
 			ref = toupper(ref);
 		} while (ref != 'S' and ref != 'N');
 		
 		do
 		{
 			printf("A-alimentacao\nL-limpeza\nV-vestuario\ndigite a categoria: ");
-			scanf("%c",&cat);
+			scanf(" %c",&cat);
 			cat = toupper(cat);
-		} while (cat != "A" and cat != "L" and cat != "V")
+		} while (cat != 'A' and cat != 'L' and cat != 'V');
 
 		if (preco_un <= 20)
 		{
@@ -76,7 +85,7 @@ main()
 		}
 		else if (preco_un <=50)
 		{
-			if (ref = 'S')
+			if (ref == 'S')
 			{
 				custo_esto = 6;
 			}
@@ -87,7 +96,7 @@ main()
 		}
 		else 
 		{
-			if (ref = 'S')
+			if (ref == 'S')
 			{
 				switch (cat)
 				{
@@ -106,28 +115,65 @@ main()
 			}
 			else
 			{
-				if (cat = 'A' or cat = 'V')
+				if (cat == 'A' or cat == 'V')
 				{
 					custo_esto = 0;
 				}
 				else 
 				{
-					custo_esto = 0;
+					custo_esto = 1;
 				}
 			}
 		}
 		
-		if (cat = 'A' or ref = 'S')
+		if (cat == 'A' or ref == 'S')
 		{
-			imposto = preco_un * 0.02;
+			imposto = 4;
+			custo_imposto = preco_un * 0.04;
 		}
 		else 
 		{
-			imposto = preco_un * 0.04;
+			imposto = 2;
+			custo_imposto = preco_un * 0.02;
 		}
 		
-		preco_fin = preco_un + custo_esto + imposto;
+		preco_fin     = preco_un + custo_esto + custo_imposto;
+		soma_esto    += custo_esto;
+		soma_imposto += custo_imposto;
 		
-		printf("produto: %d\n preco unitario: %.2f\n refrigerado: %c\n categoria: %c\n custo estocagem: %.2f\n\n",i,preco_un,ref,cat,custo_esto);
+		if (maior < preco_fin)
+		{
+			maior = preco_fin;
+		}
+		if (menor > preco_fin)
+		{
+			menor = preco_fin;
+		}
+		
+		if (preco_fin <= 20)
+		{
+			barato += 1;
+			classif = "barato";
+		}
+		else if (preco_fin <=100) 
+		{
+			normal += 1;
+			classif = "normal";
+		}
+		else
+		{
+			caro += 1;
+			classif = "caro";
+		}
+		
+		printf("\nproduto: %d\n preco unitario: %.2f\n refrigerado: %c\n categoria: %c\n custo estocagem: %.2f\n imposto de %i%%: %.2f\n preco final: %.2f\n classificacao: %s\n \n\n",i,preco_un,ref,cat,custo_esto,imposto,custo_imposto, preco_fin,classif);
 	}
+	
+	printf("media dos valores adicionais:\n custos de estocagem: %.2f \n custos impostos: %.2f\n",(soma_esto/3),(soma_imposto/3));
+	printf("\nmaior preco final: %.2f", maior);
+	printf("\nmenor preco final: %.2f", menor);
+	printf("\ntotal dos impostos: %.2f",soma_imposto);
+	printf("\nqtd de produtos baratos: %i", barato);
+	printf("\nqtd de produtos normais: %i", normal);
+	printf("\nqtd de produtos caros: %i", caro);
 }
