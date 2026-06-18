@@ -8,7 +8,6 @@ penúltimo elemento do vetor B, e assim por diante. Ao final, imprima os element
 main()
 {
 	int A[5], B[5], cont = 0;
-	bool passouDoA = false;
 	
 	for (int i = 0; i<5; i++)
 	{
